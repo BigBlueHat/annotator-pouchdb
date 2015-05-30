@@ -1,0 +1,17 @@
+{
+  "name": "annotator-pouchdb",
+  "version": "0.1.0",
+  "description": "Annotator Storage with PouchDB (and/or CouchDB)",
+  "author": "BigBlueHat",
+  "repository": "http://github.com/BigBlueHat/annotator-pouchdb",
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "pouchdb": "~3.5.0",
+    "annotator": "~2.0.0-alpha.2"
+  },
+  "scripts": {
+    "anno": "browserify -r ./node_modules/annotator/browser:annotator > annotator.js",
+    "dev": "browserify -x annotator -r ./index:annotator-pouchdb > annotator-pouchdb.js"
+  }
+}
