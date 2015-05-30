@@ -1,0 +1,9 @@
+{
+  "name": "offline-annotator",
+  "title": "Offline Annotator",
+  "id": "jid1-lIZ1qCXLyOouAA",
+  "description": "Offline Annotator + replication thanks to PouchDB",
+  "author": "BigBlueHat",
+  "license": "Apache-2.0",
+  "version": "0.1.0"
+}
