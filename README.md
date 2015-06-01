@@ -38,12 +38,9 @@ $ mkdir temp-profile # so you can see annotations post-reload
 $ cfx run --profile# rashly assuming you have the Mozilla Add-on SDK installed
 ```
 
-Then, visit a web page, click the Firefox icon (this'll change...of course) in
-the toolbar, then Annotate!!!
+Then, visit a web page, and Annotate!!!
 
 Close the browser, follow those steps again, annotate some more!! :smiley_cat:
-
-Obviously, clicking that icon everytime ain't great...so imma fix that...soon.
 
 ## Replication
 
