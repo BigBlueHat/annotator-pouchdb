@@ -27,6 +27,24 @@ handy and are in a hurry).
 
 Use `index.html` as a reference for your project.
 
+## Firefox Extension
+
+There are bundled assets in the `firefox/data` and `firefox/lib` folders that
+you will need to update if you change anything, but...if you haven't...
+
+```
+$ cd firefox
+$ mkdir temp-profile # so you can see annotations post-reload
+$ cfx run --profile# rashly assuming you have the Mozilla Add-on SDK installed
+```
+
+Then, visit a web page, click the Firefox icon (this'll change...of course) in
+the toolbar, then Annotate!!!
+
+Close the browser, follow those steps again, annotate some more!! :smiley_cat:
+
+Obviously, clicking that icon everytime ain't great...so imma fix that...soon.
+
 ## Replication
 
 Obviously, there comes a time where you might want these annotations to live
