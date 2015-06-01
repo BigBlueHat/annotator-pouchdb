@@ -1,0 +1,35 @@
+aside {
+  border: 1px solid darkgray;
+  margin-bottom: 0.5em;
+  background: #efefef;
+}
+aside:hover {
+  box-shadow: 0 0 3px darkgray;
+}
+section {
+  padding: 0 0.5em;
+}
+aside blockquote {
+  color: #333;
+  font-style: italic;
+  font-size: 90%;
+  border-left: 5px solid #CCC;
+  padding: 0.5em;
+  margin: 0 0 1em;
+}
+footer,
+footer a {
+  color: darkgray;
+}
+
+aside:hover footer a {
+  color: blue;
+}
+footer {
+  background: #ddd;
+  border-top: 1px solid darkgray;
+  text-align: right;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  font-size: 70%;
+}
