@@ -1,6 +1,25 @@
-var self = require("sdk/self");
+var data = require("sdk/self").data;
 var tabs = require("sdk/tabs");
 var { indexedDB } = require('sdk/indexed-db');
+var { ToggleButton } = require("sdk/ui/button/toggle");
+
+// Cribbed from http://github.com/hypothesis/h
+// BSD licensed
+var icons = {
+  'sleeping': {
+    "18": data.url('images/toolbar-inactive.png'),
+    "32": data.url('images/menu-item.png'),
+    "36": data.url('images/toolbar-inactive@2x.png'),
+    "64": data.url('images/menu-item@2x.png')
+  },
+  // for all occasionas
+  'active': {
+    "18": data.url('images/toolbar-active.png'),
+    "32": data.url('images/menu-item.png'),
+    "36": data.url('images/toolbar-active@2x.png'),
+    "64": data.url('images/menu-item@2x.png')
+  }
+};
 
 var PouchDB = require('pouchdb.js');
 var db = new PouchDB('annotator-offline');
@@ -77,12 +96,25 @@ var storage = {
   }
 };
 
+var button = ToggleButton({
+  id: "open-annotation-sidebar",
+  label: "Open Annotations Sidebar",
+  icon: icons.sleeping,
+  onChange: function(state) {
+    if (state.checked) {
+      sidebar.show();
+    }
+    else {
+      sidebar.hide();
+    }
+  }
+});
 
 // Annotation Sidebar Super System
 var sidebar = require("sdk/ui/sidebar").Sidebar({
   id: 'annotations-sidebar',
   title: 'Annotations',
-  url: self.data.url("sidebar.html"),
+  url: data.url("sidebar.html"),
   onReady: function(worker) {
     worker.port.on('cardClick', function(url) {
       tabs.activeTab.url = url;
@@ -114,15 +146,14 @@ var sidebar = require("sdk/ui/sidebar").Sidebar({
       });
   }
 });
-sidebar.show();
 
 // Annotate All the Tabs!
 tabs.on('ready', function(tab) {
   var worker = tab.attach({
     contentScriptFile: [
-      self.data.url('annotator.js'),
-      self.data.url('annotator-pouchdb.js'),
-      self.data.url('inject.js')
+      data.url('annotator.js'),
+      data.url('annotator-pouchdb.js'),
+      data.url('inject.js')
     ]
   });
   // TODO: wow! look at the pretty pattern!!1! >_<
