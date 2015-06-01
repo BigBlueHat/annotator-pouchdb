@@ -1,13 +1,8 @@
 "use strict";
 
-var PouchDB = require('pouchdb');
-window.PouchDB = PouchDB;
-
 // PouchDBStorage is a storage component that uses PouchDB to store annotations
 // in the browser and synchronize them to a remote CouchDB instance.
-function PouchDBStorage (options) {
-  // db is now a string; upgrade it to a PouchDB
-  var db = PouchDB(options);
+function PouchDBStorage (db) {
   // by URI filtering
   var ddoc = {
     _id: '_design/annotator',
@@ -79,9 +74,9 @@ function PouchDBStorage (options) {
   };
 }
 
-// `options` are straight-up PouchDB options at this point
-exports.pouch = function pouch(options) {
-  var storage = new PouchDBStorage(options);
+// `db` is a PouchDB database
+exports.pouch = function pouch(db) {
+  var storage = new PouchDBStorage(db);
   return {
     configure: function (registry) {
       registry.registerUtility(storage, 'storage');

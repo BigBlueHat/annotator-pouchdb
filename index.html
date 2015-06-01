@@ -107,9 +107,11 @@
       </table>
     </div>
 
+    <script src="pouchdb.js"></script>
     <script src="annotator.js"></script>
     <script src="annotator-pouchdb.js"></script>
     <script>
+      var db = new PouchDB('annotator-offline');
       var annotator = require('annotator');
       var anno = new annotator.App();
       anno
@@ -123,7 +125,7 @@
           }
         })
         .include(require('annotator-pouchdb').pouch,
-          {name: 'annotator-offline'})
+          db)
       .start()
         .then(function() {
           anno.annotations.load({key: location.href});
