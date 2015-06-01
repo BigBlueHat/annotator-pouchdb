@@ -1,7 +1,7 @@
 # Annotator PouchDB Storage Plugin
 
-![npm version](https://img.shields.io/npm/v/annotator-pouchdb.svg)
-![license](https://img.shields.io/github/license/bigbluehat/annotator-pouchdb.svg)
+[![npm version](https://img.shields.io/npm/v/annotator-pouchdb.svg)](https://www.npmjs.com/package/annotator-pouchdb)
+[![license](https://img.shields.io/github/license/bigbluehat/annotator-pouchdb.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 [PouchDB](http://pouchdb.com/) provides a fabulous offline-first storage option
 with the power to replicate between [Apache CouchDB](http://couchdb.apache.org)
