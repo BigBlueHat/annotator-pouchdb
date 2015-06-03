@@ -10,7 +10,7 @@
     "annotator": "~2.0.0-alpha.2"
   },
   "scripts": {
-    "anno": "browserify -r ./node_modules/annotator/browser:annotator > annotator.js",
-    "dev": "browserify -x annotator -r ./index:annotator-pouchdb > annotator-pouchdb.js"
+    "dev": "browserify -r ./node_modules/annotator/browser:annotator > annotator.js && browserify -x annotator -r ./index:annotator-pouchdb > annotator-pouchdb.js",
+    "firefox": "cp annotator.js firefox/data/. && cp annotator-pouchdb.js firefox/data/."
   }
 }

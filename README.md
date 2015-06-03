@@ -16,9 +16,9 @@ extension, app, or UI.
 ## Usage
 
 ```
+$ npm install -g browserify # if you don't already have it
 $ npm install
-$ npm run anno # builds annotator.js
-$ npm run dev # builds annotator-pouchdb.js
+$ npm run dev # builds annotator.js and annotator-pouchdb.js
 ```
 
 You can then open the included `index.html` file and annotate it, or run it
@@ -33,6 +33,7 @@ There are bundled assets in the `firefox/data` and `firefox/lib` folders that
 you will need to update if you change anything, but...if you haven't...
 
 ```
+$ npm run firefox # copies annotator*.js files to firefox/data/
 $ cd firefox
 $ mkdir temp-profile # so you can see annotations post-reload
 $ cfx run --profile# rashly assuming you have the Mozilla Add-on SDK installed
