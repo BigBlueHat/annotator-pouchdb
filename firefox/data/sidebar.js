@@ -19,6 +19,8 @@ function card(annotation) {
 
 addon.port.on('listAnnotations', function(list) {
   var div = document.getElementById('annotation-list');
+  // TODO: I'm confident this is bad for one's health...
+  div.innerHTML = '';
   list.annotations.forEach(function(annotation) {
     div.appendChild(card(annotation));
   });
