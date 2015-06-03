@@ -1,5 +1,6 @@
 var data = require("sdk/self").data;
 var tabs = require("sdk/tabs");
+var panels = require('sdk/panel');
 var { indexedDB } = require('sdk/indexed-db');
 var { ToggleButton } = require("sdk/ui/button/toggle");
 
@@ -33,16 +34,28 @@ var ddoc = {
         if ('uri' in doc && 'ranges' in doc) {
           emit(doc.uri, 1);
         }
-      }.toString()
+      }.toString(),
+      reduce: '_count'
     }
   }
 };
+
 db.put(ddoc)
   .catch(function(err) {
     if (err.status !== 409) {
       throw err;
     }
-    // ignore if doc already exists
+    // update if doc already exists
+    // TODO: maybe avoid always updating this on run??
+    return db.get('_design/annotator');
+  })
+  .then(function(gotDoc) {
+    ddoc._rev = gotDoc._rev;
+    return db.put(ddoc);
+  })
+  .catch(function(err) {
+    // at this point we'd better have a doc...
+    throw err;
   });
 
 // Actual Annotation Storage System
@@ -102,11 +115,35 @@ var button = ToggleButton({
   icon: icons.sleeping,
   onChange: function(state) {
     if (state.checked) {
+      // TODO: showing them both? ...suboptimal to be sure...
+      panel.show({position: button});
       sidebar.show();
     }
     else {
       sidebar.hide();
     }
+  }
+});
+
+var panel = panels.Panel({
+  contentURL: data.url('panel.html'),
+  onShow: function() {
+    db.query('annotator/annotations', {group: true})
+      .then(function(resp) {
+        var resources = [];
+        for (var i = 0; i < resp.rows.length; i++) {
+          resources.push({
+            url: resp.rows[i].key,
+            count: resp.rows[i].value
+          });
+        }
+        panel.port.emit('listResources', {
+          total: resources.length,
+          resources: resources});
+      });
+  },
+  onHide: function() {
+    button.state('window', {checked: false});
   }
 });
 
