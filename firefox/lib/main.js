@@ -153,12 +153,9 @@ var sidebar = require("sdk/ui/sidebar").Sidebar({
   title: 'Annotations',
   url: data.url("sidebar.html"),
   onReady: function(worker) {
-    worker.port.on('cardClick', function(url) {
-      tabs.activeTab.url = url;
-    });
-
     function sidebarAnnotations() {
-      db.query('annotator/annotations', {reduce: false, include_docs: true})
+      db.query('annotator/annotations',
+          {reduce: false, include_docs: true, key: tabs.activeTab.url})
         .then(function(resp) {
           var annotations = [];
           for (var i = 0; i < resp.rows.length; i++) {

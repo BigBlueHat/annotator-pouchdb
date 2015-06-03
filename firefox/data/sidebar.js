@@ -4,15 +4,8 @@ function card(annotation) {
   var template = ' \
 <blockquote>' + annotation.quote + '</blockquote>\n\
 <section>' + annotation.text + '</section>\n\
-<footer>On\n\
-  <a href="' + annotation.uri + '">' + annotation.uri + '\n\
-</a></footer>\n\
 ';
   var aside = document.createElement('aside');
-  aside.onclick = function() {
-    addon.port.emit('cardClick',
-      aside.querySelector('footer a').href);
-  };
   aside.innerHTML = template;
   return aside;
 }
