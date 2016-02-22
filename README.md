@@ -29,6 +29,9 @@ Use `index.html` as a reference for your project.
 
 ## Firefox Extension
 
+[Install it from the XPI in the repo](https://github.com/BigBlueHat/annotator-pouchdb/raw/master/offline-annotator.xpi).
+Or...if you want to help make it awesome!...keep reading. :smiley_cat:
+
 There are bundled assets in the `firefox/data` and `firefox/lib` folders that
 you will need to update if you change anything, but...if you haven't...
 
